@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 class="bg-info-subtle text-center p-2">Kittens</h1>
+
+  <%= render "flash" %>
+
+  <p><%= link_to 'New Kitty', new_kitten_path  %></p>
+
+  <% @kittens.each do |kitten| %>
+    <div class="bg-warning-subtle p-3 mb-3">
+      <p>Kitty Name: <%= content_tag :span, kitten.name, class: 'fw-semibold' %>
+        <%= link_to "Show", kitten_path(kitten) %>
+        <%= button_to "Delete", kitten_path(kitten), class: 'btn btn-danger', form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+      </p>
+    </div>
+  <% end %>
+</div>

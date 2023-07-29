@@ -1,0 +1,34 @@
+<% if @kitten.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@kitten.errors.count, "error") %></h2>
+    <ul>
+      <% @kitten.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render "flash" %>
+
+<%= form_for @kitten do |f| %>
+  <div class="col-md-3 p-5">
+    <%= f.label :name, "Kitty Name", class: 'mb-2' %>
+    <%= f.text_field :name, class: 'form-control mb-3' %>
+
+    <%= f.label :age, "Kitty Age", class: 'mb-2' %>
+    <%= f.number_field :age, class: 'form-control mb-3' %>
+
+    <%= f.label :cuteness, "Kitty Cuteness", class: 'mb-2' %>
+    <%= f.number_field :cuteness, class: 'form-control mb-3' %>
+
+    <%= f.label :softness, "Kitty Softness", class: 'mb-2' %>
+    <%= f.number_field :softness, class: 'form-control mb-3' %>
+
+    <%= f.submit 'Save', class: 'btn btn-primary form-control'%>
+  </div>
+<% end %>
+
+<% if @kitten.persisted? %>
+  <%= button_to 'Delete', kitten_path(@kitten), class: 'btn btn-danger mt-3', form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+<% end %>

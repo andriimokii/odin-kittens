@@ -1,0 +1,18 @@
+<div class="container p-3">
+  <%= render "flash" %>
+
+  <%= content_tag :h2, "Kitty id: #{@kitten.id}"%>
+
+  <p>Kitty name: <span class="fw-semibold"><%= @kitten.name %></span></p>
+  <p>Kitty Age: <span class="fw-semibold"><%= @kitten.age %></span></p>
+  <p>Kitty Cuteness: <span class="fw-semibold"><%= @kitten.cuteness %></span></p>
+  <p>Kitty Softness: <span class="fw-semibold"><%= @kitten.softness %></span></p>
+  <p class="fs-6 fw-lighter">Created at: <span class="fs-6 fw-lighter"><%= @kitten.created_at.strftime('%Y-%m-%d') %></span></p>
+
+  <p><%= link_to 'Edit Kitty', edit_kitten_path(@kitten) %></p>
+  <p><%= link_to 'Home', kittens_path %></p>
+
+  <div>
+    <%= button_to "Delete", kitten_path(@kitten), class: 'btn btn-danger', form: { data: { turbo_confirm: "Are you sure?" } }, method: :delete %>
+  </div>
+</div>
